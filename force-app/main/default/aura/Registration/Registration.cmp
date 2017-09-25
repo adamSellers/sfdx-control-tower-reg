@@ -1,0 +1,28 @@
+<!--
+ - Created by tsellers on 02/09/2017.
+ -->
+
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="RegistrationCtrl">
+
+    <aura:attribute name="registrationStatus" type="Object"/>
+    <aura:attribute name="client_id" type="String" required="true" />
+    <aura:attribute name="redirect_uri" type="String" required="true" />
+    <aura:attribute name="registration_server" type="String" required="true" />
+    <aura:attribute name="orgDetails" type="Object" />
+    <aura:attribute name="isProcessing" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.registrationStatus.registered}">
+
+        <ui:button class="button" label="De-Register" press="{!c.deregister}" />
+        <aura:set attribute="else">
+            <aura:if isTrue="{!v.isProcessing}">
+                Waiting for registration to work.
+                <aura:set attribute="else">
+                    <ui:button class="button" label="Register" press="{!c.register}"/>
+                </aura:set>
+            </aura:if>
+        </aura:set>
+    </aura:if>
+</aura:component>

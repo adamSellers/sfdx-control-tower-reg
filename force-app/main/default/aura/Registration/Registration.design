@@ -1,0 +1,9 @@
+<!--
+ - Created by tsellers on 09/09/2017.
+ -->
+
+<design:component label="Registration App Configuration">
+    <design:attribute name="client_id" label="Client ID" description="This value should be provided to you on installation documentation" />
+    <design:attribute name="redirect_uri" label="Redirect URI" description="The context of your redirect endpoint (e.g. /oauth/_callback). Will be appended to the Registration Server value to make complete URL "/>
+    <design:attribute name="registration_server" label="Registration Server" description="The scheme and host of the Registration server (e.g. https://my.registration.com/)" />
+</design:component>
