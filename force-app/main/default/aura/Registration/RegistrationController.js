@@ -12,13 +12,17 @@
 
         var urlEvent = $A.get("e.force:navigateToURL");
         var regStatus = cmp.get("v.registrationStatus");
+        var orgDetails = cmp.get("v.orgDetails");
 
         var clientId = cmp.get("v.client_id");
         var redirectURI = cmp.get("v.redirect_uri");
         var registrationHost = cmp.get("v.registration_server");
 
-        var target = encodeURI("https://login.salesforce.com/services/oauth2/authorize?response_type=code&client_id="+clientId+ "&redirect_uri="+registrationHost+redirectURI);
-        
+        var loginHost = orgDetails.isSandbox ? 'https://test.salesforce.com' : 'https://login.salesforce.com';
+        var redirect = registrationHost+redirectURI;
+        var target = encodeURI(`${loginHost}/services/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect}&state=${orgDetails.isSandbox}`);
+        console.log(`Calling target [${target}]`);
+
         urlEvent.setParams({
             "url": target
         });

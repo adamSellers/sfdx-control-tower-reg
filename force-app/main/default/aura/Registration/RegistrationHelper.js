@@ -11,6 +11,7 @@
             if(response.getState() === "SUCCESS") {
 
                 var orgDetails = JSON.parse(response.getReturnValue());
+                console.log(`~~ ${JSON.stringify(orgDetails)}`);
                 cmp.set("v.orgDetails", orgDetails);
                 var xhttp = new XMLHttpRequest();
                 var registrationHost = cmp.get("v.registration_server");

@@ -10,7 +10,7 @@ public with sharing class RegistrationCtrl {
 
         OrgDetails od = new OrgDetails();
         od.orgId = UserInfo.getOrganizationId();
-
+        od.isSandbox = [select isSandbox from organization limit 1].isSandbox;
         return JSON.serialize(od);
     }
 
@@ -18,5 +18,7 @@ public with sharing class RegistrationCtrl {
         @AuraEnabled
         public String orgId {get; set;}
 
+        @AuraEnabled
+        public Boolean isSandbox {get; set;}
     }
 }
